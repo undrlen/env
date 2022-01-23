@@ -1,0 +1,36 @@
+{
+  "name": "env",
+  "version": "1.0.0",
+  "description": "Babel &amp;&amp; Webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undrlen/env.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/undrlen/env/issues"
+  },
+  "homepage": "https://github.com/undrlen/env#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7"
+  },
+  "browserslist": [
+    "last 2 chrome versions",
+    "last 2 firefox versions",
+    "last 29 edge versions"
+  ],
+  "dependencies": {
+    "core-js": "^3.20.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
