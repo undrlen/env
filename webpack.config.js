@@ -1,7 +1,6 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const devMode = process.env.NODE_ENV !== "production";
 
 
 module.exports = (env) => {
@@ -27,7 +26,6 @@ module.exports = (env) => {
               options: {
                 outputPath: "img",
                 name: "[name].[ext]"
-                // name: "[name]-[sha1:hash:7].[ext]"
               }
             }
           ]
