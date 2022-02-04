@@ -1,6 +1,7 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 
 module.exports = (env) => {
@@ -19,7 +20,7 @@ module.exports = (env) => {
           ]
         },
         {
-          test: /\.(jpg|jpeg|png|ico|gif)$/,
+          test: /\.(jpe?g|png|ico|gif)$/,
           use: [
             {
               loader: "file-loader",
@@ -60,11 +61,18 @@ module.exports = (env) => {
       }),
       new MiniCssExtractPlugin({
         filename: "[name]-[contenthash:6].css"
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: "public/fonts", to: "fonts" },
+          { from: "public/img", to: "img" }
+        ],
       })
     ],
 
     devServer: {
-      open: true
+      open: true,
+      watchFiles: ['src/**/*', 'public/**/*'],
     }
 
   };

@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./main.scss";
-import "../public/css/main.css"
-import "./agency.jpg";
+import "./main.sass";
+import "../public/css/main.css";
 
 const App = () => <h2>Hello, World</h2>;
 
