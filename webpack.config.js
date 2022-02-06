@@ -47,9 +47,9 @@ module.exports = (env) => {
           test: /\.(sa|sc|c)ss$/,
           use: [
             !env.WEBPACK_BUILD ? "style-loader" : MiniCssExtractPlugin.loader,
-            "css-loader",
+            { loader: "css-loader", options: { sourceMap: true } },
             // "postcss-loader",
-            "sass-loader",
+            { loader: "sass-loader", options: { sourceMap: true } },
           ],
         }
       ]
@@ -57,23 +57,28 @@ module.exports = (env) => {
 
     plugins: [
       new HtmlWebpackPlugin({
-        template: "public/index.html"
+        template: "public/index.html",
+        inject: "body",
+        // injectCss: "body",
+        minify: false,
+        cache: false
       }),
-      new MiniCssExtractPlugin({
-        filename: "[name]-[contenthash:6].css"
-      }),
-      new CopyPlugin({
-        patterns: [
-          { from: "public/fonts", to: "fonts" },
-          { from: "public/img", to: "img" }
-        ],
-      })
-    ],
+      // new CopyPlugin({
+      //   patterns: [
+      //     { from: "public/fonts", to: "fonts" },
+      //     { from: "public/img", to: "img" }
+      //   ],
+      // })
+    ].concat(!env.WEBPACK_BUILD ? [] : [new MiniCssExtractPlugin()]),
 
     devServer: {
       open: true,
       watchFiles: ['src/**/*', 'public/**/*'],
-    }
+    },
+
+    optimization: {
+      minimize: false,
+    },
 
   };
 }
