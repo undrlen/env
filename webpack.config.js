@@ -46,7 +46,12 @@ module.exports = (env) => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-            !env.WEBPACK_BUILD ? "style-loader" : MiniCssExtractPlugin.loader,
+            !env.WEBPACK_BUILD ?
+              "style-loader" :
+              {
+                loader: MiniCssExtractPlugin.loader,
+                options: { publicPath: "/public/" }
+              },
             { loader: "css-loader", options: { sourceMap: true } },
             // "postcss-loader",
             { loader: "sass-loader", options: { sourceMap: true } },
