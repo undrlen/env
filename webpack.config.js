@@ -1,17 +1,26 @@
-
+// const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-
 
 module.exports = (env) => {
+
   return {
+    entry: './src/index.js',
+
     mode: env.WEBPACK_BUILD ? "production" : "development",
+
+    output: {
+      filename: '[name].bundle.js',
+      // path: './dist',
+      clean: true,
+      pathinfo: false,
+    },
 
     module: {
       rules: [
         {
           test: /\.js$/,
+          // include: './src',
           exclude: /node_modules/,
           use: [
             {
@@ -20,28 +29,18 @@ module.exports = (env) => {
           ]
         },
         {
-          test: /\.(jpe?g|png|ico|gif)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                outputPath: "img",
-                name: "[name].[ext]"
-              }
-            }
-          ]
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'img/[name][ext]'
+          },
         },
         {
-          test: /\.(ttf|woff|woff2|eot|otf)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                outputPath: "fonts",
-                name: "[name].[ext]"
-              }
-            }
-          ]
+          test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[name][ext]'
+          },
         },
         {
           test: /\.(sa|sc|c)ss$/,
@@ -50,7 +49,6 @@ module.exports = (env) => {
               "style-loader" :
               {
                 loader: MiniCssExtractPlugin.loader,
-                options: { publicPath: "/public/" }
               },
             { loader: "css-loader", options: { sourceMap: true } },
             // "postcss-loader",
@@ -64,25 +62,14 @@ module.exports = (env) => {
       new HtmlWebpackPlugin({
         template: "public/index.html",
         inject: "body",
-        // injectCss: "body",
         minify: false,
-        cache: false
       }),
-      // new CopyPlugin({
-      //   patterns: [
-      //     { from: "public/fonts", to: "fonts" },
-      //     { from: "public/img", to: "img" }
-      //   ],
-      // })
     ].concat(!env.WEBPACK_BUILD ? [] : [new MiniCssExtractPlugin()]),
 
     devServer: {
       open: true,
       watchFiles: ['src/**/*', 'public/**/*'],
-    },
-
-    optimization: {
-      minimize: false,
+      static: "./dist",
     },
 
   };
