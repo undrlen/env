@@ -1,17 +1,14 @@
-// const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) => {
-
   return {
-    entry: './src/index.js',
+    entry: "./src/index.js",
 
     mode: env.WEBPACK_BUILD ? "production" : "development",
 
     output: {
-      filename: '[name].bundle.js',
-      // path: './dist',
+      filename: "[name].bundle.js",
       clean: true,
       pathinfo: false,
     },
@@ -20,42 +17,49 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.js$/,
-          // include: './src',
           exclude: /node_modules/,
           use: [
             {
-              loader: "babel-loader"
-            }
-          ]
+              loader: "babel-loader",
+            },
+          ],
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: 'asset/resource',
+          type: "asset/resource",
           generator: {
-            filename: 'img/[name][ext]'
+            filename: "img/[name][ext]",
           },
         },
         {
           test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-          type: 'asset/resource',
+          type: "asset/resource",
           generator: {
-            filename: 'fonts/[name][ext]'
+            filename: "fonts/[name][ext]",
           },
         },
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-            !env.WEBPACK_BUILD ?
-              "style-loader" :
-              {
+            !env.WEBPACK_BUILD
+              ? "style-loader"
+              : {
                 loader: MiniCssExtractPlugin.loader,
               },
-            { loader: "css-loader", options: { sourceMap: true } },
-            // "postcss-loader",
+            {
+              loader: "css-loader",
+              options: { sourceMap: true, importLoaders: 2 },
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                postcssOptions: { plugins: [require("autoprefixer")()] },
+              },
+            },
             { loader: "sass-loader", options: { sourceMap: true } },
           ],
-        }
-      ]
+        },
+      ],
     },
 
     plugins: [
@@ -68,9 +72,8 @@ module.exports = (env) => {
 
     devServer: {
       open: true,
-      watchFiles: ['src/**/*', 'public/**/*'],
+      watchFiles: ["src/**/*", "public/**/*"],
       static: "./dist",
     },
-
   };
-}
+};

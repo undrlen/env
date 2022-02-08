@@ -4,15 +4,6 @@ import ReactDOM from "react-dom";
 import Icon from "../public/img/one.jpg";
 
 import "../public/sass/main.sass";
-
-console.log("Привет");
-const App = () => {
-  return (
-    <>
-      <img src={Icon} />
-      <h2>Hello, World</h2>
-    </>
-  );
-};
+import App from "./components/App/App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
