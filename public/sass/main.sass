@@ -1,7 +1,116 @@
-@import "mixins"
+// @import "mixins"
 @import "fonts"
-@import "vars"
+// @import "vars"
 @import "template"
 
+#root
+  display: flex
+  min-height: 100vh
+  justify-content: center
+  align-items: center
+
+body
+  margin: 0 auto
+
 .wrap
-  color: blue
+  min-width: 50%
+  font-size: 2rem
+.tasks
+  & div
+    padding: .1em .3em
+    border: 1px solid #eee
+    border-radius: .12em
+    & .task
+      font-family: AdventPro, sans-serif
+
+    & span
+      font-family: BootstrapIcons
+
+    & :nth-child(3)
+      font-size: 1.1rem
+      padding: 0 .35em
+      line-height: 1.6
+      border: 2px solid #0c7924
+      border-radius: .22em
+      position: relative
+      top: 1px
+      color: #0c7924
+      transition: all .5s
+      &:hover
+        color: #95e7a7
+        border: 2px solid #95e7a7
+
+    & span + span
+      cursor: pointer
+      float: right
+      margin-left: 0.5em
+      color: red
+      transition: all .5s
+      &:hover
+        color: #680606
+
+  & div + div
+    border-top: none
+
+.form_add
+  margin-top: 0.4em
+  display: flex
+
+.input_add
+  border: 1px solid #eee
+  border-radius: .12em
+  font-family: AdventPro, sans-serif
+  flex-grow: 1
+
+.button_add
+  font-family: AdventPro, sans-serif
+  color: #0c7924
+  float: right
+  border-radius: .22em
+  border: 2px solid #eee
+  background-color: #fff
+  font-size: 1.4rem
+  font-weight: bold
+  line-height: 1.8
+  margin-left: 0.4em
+  transition: all .5s
+  &:hover
+    background-color: #0c7924
+    color: #fff
+    border: 2px solid #95e7a7
+
+.form_search
+  margin-bottom: 0.4em
+  display: flex
+  & button + button
+    border-left: none
+  & > button
+    font-size: 1.4rem
+    font-weight: bold
+    line-height: 1.8
+    font-family: AdventPro, sans-serif
+    color: #0c7924
+    border-radius: .22em
+    border: 2px solid #eee
+    background-color: #fff
+    // flex-basis: 20%
+    padding-right: .5em
+    padding-left: .5em
+    transition: all .5s
+    &:hover
+      background-color: #0c7924
+      color: #fff
+      border: 2px solid #95e7a7
+      border-left: none
+
+.input_search
+  flex-grow: 1
+  margin-right: 0.3em
+  border: 1px solid #eee
+  border-radius: .12em
+  font-family: AdventPro, sans-serif
+
+input
+  overflow: hidden
+  padding-left: .3em
+  padding-right: .3em
