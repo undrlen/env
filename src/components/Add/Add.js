@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Add = () => {
+const Add = (props) => {
+
+  const [targetValue, addState] = useState("");
+
+  function clickAddButton(e) {
+    e.preventDefault();
+    props.addTask(targetValue);
+    addState("");
+  }
+
+  function changeState(e) {
+    addState(e.target.value);
+  }
+
   return (
-    <form action="#0" className="form_add">
-      <input type="text" placeholder="What needs to be done" className="input_add"></input>
+    <form action="#0" className="form_add"
+      onSubmit={clickAddButton}>
+      <input type="text" placeholder="What needs to be done" className="input_add" onChange={changeState} value={targetValue}></input>
       <button type="submit" className="button_add">Add task</button>
     </form>
   );

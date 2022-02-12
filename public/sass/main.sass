@@ -16,7 +16,7 @@ body
   min-width: 50%
   font-size: 2rem
 .tasks
-  & div
+  & > div
     padding: .1em .3em
     border: 1px solid #eee
     border-radius: .12em
@@ -46,6 +46,8 @@ body
       margin-left: 0.5em
       color: red
       transition: all .5s
+      position: relative
+      top: 1px
       &:hover
         color: #680606
 
@@ -74,10 +76,12 @@ body
   line-height: 1.8
   margin-left: 0.4em
   transition: all .5s
+  padding-left: 0.5em
+  padding-right: 0.5em
   &:hover
     background-color: #0c7924
     color: #fff
-    border: 2px solid #95e7a7
+    // border: 2px solid #95e7a7
 
 .form_search
   margin-bottom: 0.4em
@@ -99,8 +103,8 @@ body
     &:hover
       background-color: #0c7924
       color: #fff
-      border: 2px solid #95e7a7
-      border-left: none
+      // border: 2px solid #95e7a7
+      // border-left: none
 
 .input_search
   flex-grow: 1
