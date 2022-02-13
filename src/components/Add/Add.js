@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-const Add = (props) => {
-
+const Add = ({ addTask }) => {
   const [targetValue, addState] = useState("");
 
   function clickAddButton(e) {
     e.preventDefault();
-    props.addTask(targetValue);
+    targetValue && addTask(targetValue);
     addState("");
   }
 
@@ -15,10 +14,17 @@ const Add = (props) => {
   }
 
   return (
-    <form action="#0" className="form_add"
-      onSubmit={clickAddButton}>
-      <input type="text" placeholder="What needs to be done" className="input_add" onChange={changeState} value={targetValue}></input>
-      <button type="submit" className="button_add">Add task</button>
+    <form action="#0" className="form_add" onSubmit={clickAddButton}>
+      <input
+        type="text"
+        placeholder="What needs to be done"
+        className="input_add"
+        onChange={changeState}
+        value={targetValue}
+      ></input>
+      <button type="submit" className="button_add">
+        Add task
+      </button>
     </form>
   );
 };

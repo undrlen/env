@@ -22,6 +22,8 @@ body
     border-radius: .12em
     & .task
       font-family: AdventPro, sans-serif
+      &:hover
+        cursor: pointer
 
     & span
       font-family: BootstrapIcons
@@ -88,6 +90,9 @@ body
   display: flex
   & button + button
     border-left: none
+  & .button_color
+    background-color: #0c7924
+    color: #fff
   & > button
     font-size: 1.4rem
     font-weight: bold
@@ -117,3 +122,9 @@ input
   overflow: hidden
   padding-left: .3em
   padding-right: .3em
+
+.important
+  font-weight: bold
+
+.done
+  text-decoration-line: line-through

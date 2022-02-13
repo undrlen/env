@@ -1,13 +1,36 @@
-import React from 'react'
+import React from "react";
 
-const Search = () => {
+const Search = ({ selectDone, selectLetters, booleanValue }) => {
+  const buttons = [
+    { bool: undefined, label: "All" },
+    { bool: false, label: "Active" },
+    { bool: true, label: "Done" },
+  ];
+
+  const elements = buttons.map(({ bool, label }) => {
+    const isActive = bool === booleanValue;
+    const classNames = isActive ? "button_color" : "";
+    return (
+      <button
+        className={classNames}
+        onClick={() => selectDone(bool)}
+        key={label}
+      >
+        {label}
+      </button>
+    );
+  });
+
   return (
-    <form action="#0" className="form_search">
-      <input type="text" placeholder="Type to search" className="input_search"></input>
-      <button className="button_all">All</button>
-      <button className="button_active">Active</button>
-      <button className="button_done">Done</button>
-    </form>
+    <div className="form_search">
+      <input
+        type="text"
+        placeholder="Type to search"
+        className="input_search"
+        onChange={(e) => selectLetters(e.target.value)}
+      ></input>
+      {elements}
+    </div>
   );
 };
 
